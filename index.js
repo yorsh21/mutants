@@ -11,21 +11,10 @@ app.get('/', function (req, res) {
 
 app.get('/stats', function (req, res) {
 	mongodb.getMutants().then((result) => {
-		let sumHuman = 0
-		let sumMutant = 0
-
-		result.forEach((item) => {
-			if (item.isMutant) { 
-				sumMutant++ 
-			} else {
-				sumHuman++ 
-			}
-		})
-
 		res.json({
-			"count_mutant_dna": sumMutant, 
-			"count_human_dna": sumHuman, 
-			"ratio": (sumMutant/sumHuman).toFixed(1)
+			"count_mutant_dna": result["mutants"], 
+			"count_human_dna": result["humans"], 
+			"ratio": (result["mutants"]/result["humans"]).toFixed(1)
 		})
 	})
 })

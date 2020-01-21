@@ -19,7 +19,8 @@ exports.storeMutant = (mutantStat) => {
 exports.getMutants = async () => {
     const client = await MongoClient.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
     const collection = client.db(envData.database).collection(envData.collection)
-    const docs = await collection.find({}).toArray()
+    const mutants = await collection.countDocuments({"isMutant": true})
+    const humans = await collection.countDocuments({"isMutant": false})
 
-    return docs
+    return {"mutants": mutants, "humans": humans}
 }
