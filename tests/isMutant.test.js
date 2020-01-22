@@ -1,5 +1,6 @@
 var isMutant = require('./../modules/mutant-v2');
 
+//Casos horizontal y vertical cuyo valor de retorno es falso.
 let dnas_false = {
 	dna0:  ["ATCGATCG","CGTACGTA","ATCGATCG","CGTACGTA","ATCGATCG","CGTACGTA","CGTACGTA","ATCGATCG"],
 	dna1:  ["ATCGATCG","CGTACGTA","ATCGATCG","CGTACGTA","ATCGATCG","CGTACGTA","CGTACGTA","ATCGATCG"],
@@ -19,6 +20,7 @@ let dnas_false = {
 	dna15: ["ATCGATCG","CGTACGTA","ATCGATCG","CGCACGTA","ATCGATCG","CGTACGTA","CCCCCCCA","GCTAGCTA"],
 };
 
+//Casos horizontal y vertical cuyo valor de retorno es true.
 let dnas_true = {
 	dna0:  ["ATCGATCG","AGTACGTA","ATCGATCG","AGTACGTA","ATCGATCG","CCCCCGTA","CGTACGTA","ATCGATCG"],
 	dna1:  ["ATCGATCG","CGTACGTA","AGCGATCG","CGTACGCA","ATGGATCG","CGTCCCCA","CGTACGTA","CGTACGTA"],
@@ -38,6 +40,7 @@ let dnas_true = {
 	dna15: ["ATCGATCG","TTTTTTTT","ATCGATCG","CGTACGTA","ATCGATCG","CGTACGTA","CCCCCCCC","CCCCCGTA"],
 };
 
+//Casos horizontal, vertical y oblicuos cuyo valor de retorno es true.
 let dnas_oblique = {
 	dna0:  ["ATCGGTCG","CGTACGTA","ATCGATGG","CGTACGTG","ATCGATCG","CATACGTA","CGAACGTA","ATCAATCG"],
 	dna1:  ["ATCGATCG","CGTACGTA","ACCGATCG","CGCCCCTA","ATCGCTCG","CCTCGGTA","CGTACGTA","ATCGATCG"],
@@ -59,19 +62,19 @@ let dnas_oblique = {
 
 
 Object.entries(dnas_false).forEach(([key, value]) => {
-	test(`find ${key} false`, () => {
+	test(`Find horizontal and vertical: ${key} -> false`, () => {
 		expect(isMutant(value)).toBe(false)
 	});
 });
 
 Object.entries(dnas_true).forEach(([key, value]) => {
-	test(`find ${key} true`, () => {
+	test(`Find horizontal and vertical: ${key} -> true`, () => {
 		expect(isMutant(value)).toBe(true)
 	});
 });
 
 Object.entries(dnas_oblique).forEach(([key, value]) => {
-	test(`find oblique ${key} true`, () => {
+	test(`Find horizontal, vertical and oblique: ${key} -> true`, () => {
 		expect(isMutant(value)).toBe(true)
 	});
 });
