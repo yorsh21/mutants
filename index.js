@@ -10,7 +10,7 @@ app.get('/', function (req, res) {
 })
 
 app.get('/stats', function (req, res) {
-	mongodb.getMutants().then((result) => {
+	mongodb.statsMutants().then((result) => {
 		res.json({
 			"count_mutant_dna": result["mutants"], 
 			"count_human_dna": result["humans"], 
