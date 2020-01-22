@@ -6,7 +6,7 @@ const app = express()
 app.use(express.json())
 
 app.get('/', function (req, res) {
-    res.send('Send POST request to determine if a person is mutant from their DNA')
+    res.status(200).send('Send POST request to determine if a person is mutant from their DNA')
 })
 
 app.get('/stats', function (req, res) {
@@ -43,3 +43,6 @@ app.use(function(req, res, next) {
 app.listen(8080, function () {
     console.log('APP listening on port 8080.')
 })
+
+
+module.exports = app;
